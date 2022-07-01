@@ -29,19 +29,19 @@
             <td>{{item.time | formate}}</td>
             <td><a href="#" @click.prevent='delFn(item.id)'>删除</a></td>
           </tr>
-          <!-- <tr style="background-color: #EEE">
+          <tr style="background-color: #EEE">
               <td>统计:</td>
-              <td colspan="2">总价钱为: 0</td>
-              <td colspan="2">平均价: 0</td>
-          </tr> -->
+              <td colspan="2">总价钱为: {{countPrice}}</td>
+              <td colspan="2">平均价: {{averagePrice}}</td>
+          </tr>
         </tbody>
-          <!-- 
+          
         <tfoot >
           <tr>
-            <td colspan="5" style="text-align: center">暂无数据</td>
+            <td colspan="5" style="text-align: center" v-if='list.length<=0'>暂无数据</td>
           </tr>
         </tfoot>
-            -->
+           
       </table>
 
       <!-- 添加资产 -->
@@ -109,6 +109,14 @@ export default {
     delFn(val){
       const index=this.list.findIndex(ele=>ele.id==val);
       this.list.splice(index,1);
+    }
+  },
+  computed:{
+    countPrice(){
+      return (this.list.reduce((sum,next)=>sum+(+next.price),0)).toFixed(2);
+    },
+    averagePrice(){
+      return (this.countPrice/this.list.length).toFixed(2);
     }
   }
 }
