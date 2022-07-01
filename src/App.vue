@@ -1,28 +1,55 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <span>全选:</span>
+    <input type="checkbox" v-model="isAll" />
+    <button @click="butFn">反选</button>
+    <ul>
+      <li v-for="item in arr" :key="item.name">
+        <input type="checkbox" v-model="item.c" />
+        <span>{{ item.name }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      arr: [
+        {
+          name: "猪八戒",
+          c: false,
+        },
+        {
+          name: "孙悟空",
+          c: false,
+        },
+        {
+          name: "唐僧",
+          c: false,
+        },
+        {
+          name: "白龙马",
+          c: false,
+        },
+      ],
+    };
+  },
+  computed: {
+    isAll: {
+      get() {
+        return this.arr.every((ele) => ele.c);
+      },
+      set(val) {
+        this.arr.forEach((ele) => (ele.c = val));
+      },
+    },
+  },
+  methods: {
+    butFn() {
+      this.arr.forEach((ele) => (ele.c = !ele.c));
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
