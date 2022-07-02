@@ -2,7 +2,7 @@
   <div>
     <span>全选:</span>
     <input type="checkbox" v-model="isAll" />
-    <button>反选</button>
+    <button @click="strFn">反选</button>
     <ul>
       <li v-for="(item, index) in arr" :key="index">
         <input type="checkbox" v-model="item.c" />
@@ -42,11 +42,17 @@ export default {
         this.arr.forEach((item) => {
           return item.c = val
         })
+      },
+      get() {
+        return this.arr.every((item) => item.c == true)
       }
     }
   },
-  watch: {
-
+  methods: {
+    strFn() {
+      this.arr.forEach((item) => item.c = !item.c)
+    }
   }
+
 };
 </script>

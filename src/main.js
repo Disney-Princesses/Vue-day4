@@ -19,9 +19,7 @@ Vue.filter("getStr", (val, num) => {
   }
   return (val / num) + str
 })
-Vue.filter('val', (str) => {
-  return str < 0 ? 0 : str
-})
+
 new Vue({
   render: h => h(App),
 }).$mount('#app')
