@@ -3,6 +3,8 @@ import App from './App.vue'
 
 // 1. 下载moment模块
 import moment from 'moment'
+import "bootstrap/dist/css/bootstrap.css";
+
 
 Vue.config.productionTip = false
 Vue.filter("setData", (val, str = '-') => {
