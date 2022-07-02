@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 补全js代码，要求实现对象参数的深拷贝并返回拷贝之后的新对象-->
+    <script type="text/javascript">
+      var obj = {
+        id: 1,
+        name: "张三",
+        msg: {
+          age: 18,
+        },
+        color: ["red", "green", "yellow"],
+      };
+      const _completeDeepClone = (target, map = new Map()) => {
+        // 补全代码
+        for (var k in target) {
+          if (target[k] instanceof Array) {
+            map[k] = [];
+            _completeDeepClone(target[k], map[k]);
+          } else if (target[k] instanceof Object) {
+            map[k] = {};
+            _completeDeepClone(target[k], map[k]);
+          } else {
+            map[k] = target[k];
+          }
+        }
+        return map;
+      };
+      console.log(_completeDeepClone(obj));
+    </script>
+    <!-- 深拷贝 -->
+    <!-- <script>
+        var o={};
+        var obj={
+            id:1,
+            name:"张三",
+            msg:{
+                age:18,
+            },
+            color:['red','green','yellow'],
+        }
+        function deepType(newObj,oldObj){
+            for(var k in oldObj){
+                if(oldObj[k] instanceof Array){
+                    newObj[k]=[];
+                    deepType(newObj[k],oldObj[k]);
+                }else if(oldObj[k] instanceof Object){
+                    newObj[k]={};
+                    deepType(newObj[k],oldObj[k]);
+                }else{
+                    newObj[k]=oldObj[k];
+                }
+            }
+        }
+        deepType(o,obj);
+        console.log(o);
+    </script> -->
+  </body>
+</html>

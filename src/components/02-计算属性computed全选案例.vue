@@ -2,10 +2,10 @@
   <div>
     <span>全选:</span>
     <input type="checkbox" v-model="isAll" />
-    <button @click='clickFn'>反选</button>
+    <button @click="clickFn">反选</button>
     <ul>
       <li v-for="item in arr" :key="item.name">
-        <input type="checkbox" v-model='item.c'/>
+        <input type="checkbox" v-model="item.c" />
         <span>{{ item.name }}</span>
       </li>
     </ul>
@@ -39,21 +39,21 @@ export default {
   computed: {
     isAll: {
       set(val) {
-        this.arr.forEach(item=>{
-          item.c=val;
-        })
+        this.arr.forEach((item) => {
+          item.c = val;
+        });
       },
-      get(){
-        return this.arr.every(item=>item.c)
-      }
+      get() {
+        return this.arr.every((item) => item.c);
+      },
     },
   },
-  methods:{
-    clickFn(){
-      this.arr.forEach(item=>{
-        item.c=!item.c;
-      })
-    }
-  }
+  methods: {
+    clickFn() {
+      this.arr.forEach((item) => {
+        item.c = !item.c;
+      });
+    },
+  },
 };
 </script>

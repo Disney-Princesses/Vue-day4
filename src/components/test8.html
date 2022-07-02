@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 判断this指向 -->
+    <script>
+      function fn() {
+        console.log(this);
+      }
+      const obj = {
+        name: "test",
+        a() {//a方法中的this指向调用者obj
+          console.log(this.a);//obj.a=function(){}
+          setTimeout(function () {
+            console.log(this.a);//定时器中的this指向window,undefined
+          }, 1000);
+        },
+        b() {//this指向obj
+          console.log(this);//obj
+          fn();//函数中的this指向函数调用者，this指向window
+        },
+      };
+      obj.a();
+      obj.b();
+      // function(){}
+      // undefined
+      // obj
+      // window
+    </script>
+  </body>
+</html>
