@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // const _completeDeepClone = (target, map = new Map()) => {
+      //   // 补全代码
+      // };
+
+      //   let map = new Map(); // WeakMap
+      //   function copy(obj) {
+      //     let newobj = null;
+      //     if (typeof obj == "object" && obj !== null) {
+      //       if (map.get(obj)) {
+      //         newobj = map.get(obj); // 如果不想循环打印 可以设置为null
+      //       } else {
+      //         newobj = obj instanceof Array ? [] : {};
+      //         map.set(obj, newobj);
+      //         for (var i in obj) {
+      //           newobj[i] = copy(obj[i]);
+      //         }
+      //       }
+      //     } else {
+      //       newobj = obj;
+      //     }
+      //     return newobj;
+      //   }
+      //   obj.b = obj;
+      //   let copyObj = copy(obj);
+      //   console.log(obj, copyObj);
+
+      // 原生深拷贝
+      function deepCopy(newObj, oldObj) {
+        for (var k in oldObj) {
+          if (oldObj[k] instanceof Array) {
+            newObj[k] = [];
+            deepCopy(newObj[k], oldObj[k]);
+          } else if (oldObj[k] instanceof Object) {
+            newObj[k] = {};
+            deepCopy(newObj[k], oldObj[k]);
+          } else {
+            newObj[k] = oldObj[k];
+          }
+        }
+      }
+      obj = {
+        a: 1,
+        b: "一",
+        c: {
+          d: [1, 2, 3],
+          e: { g: 1, h: 7 },
+        },
+      };
+      newobj={}
+      deepCopy(newobj,obj)
+      console.log(newobj);
+    </script>
+  </body>
+</html>
