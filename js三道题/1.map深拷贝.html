@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        let o = {}
+        let obj = {
+            name: 'zs',
+            age: 20,
+            hobby: ['eat', 'drink', 'sleep'],
+            song: () => {
+                console.log('singer');
+            },
+            msg: {
+                a: 20
+            }
+        }
+
+        const _completeDeepClone = (target, map = new Map()) => {
+            // 补全代码
+            for (let k in target) {
+                let item = target[k];
+                if (item instanceof Array) {
+                    map[k] = []
+                    _completeDeepClone(map[k], item)
+                } else if (item instanceof Object) {
+                    map[k] = {}
+                    _completeDeepClone(map[k], item)
+                } else {
+                    map[k] = item
+                }
+            }
+            return map
+        }
+
+        console.log(_completeDeepClone(obj));
+
+
+
+        //原生深拷贝
+
+        let deepCopy = (newObj, oldObj) => {
+            for (let k in oldObj) {
+                let item = oldObj[k];
+                if (item instanceof Array) {
+                    newObj[k] = []
+                    deepCopy(newObj[k], item)
+                } else if (item instanceof Object) {
+                    newObj[k] = {}
+                    deepCopy(newObj[k], item)
+                } else {
+                    newObj[k] = item
+                }
+            }
+        }
+        deepCopy(o, obj)
+        console.log(o);
+
+
+    </script>
+</body>
+
+</html>

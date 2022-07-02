@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let o = {a:1}
+        let arr = [1,2,3,4,5]
+        let fn = () => {
+            console.log(111);
+        }
+        let str = 'kjkkjj'
+        let num = 1000
+        let flag = true
+        let n = null
+        // console.log(o instanceof Object);
+        // console.dir(o.__proto__);
+        // console.dir(Object.prototype);
+
+        function simulateIns(data) {
+            if (data === null) return console.log('null');
+            if (data === undefined) return console.log('undefined');
+            if (data.__proto__ == Object.prototype){
+                return console.log('Object');
+            }else if (data.__proto__ == Array.prototype){
+                return console.log('Array');
+            }else if (data.__proto__ == Function.prototype){
+                return console.log('Function');
+            }else if (data.__proto__ == String.prototype){
+                return console.log('String');
+            }else if (data.__proto__ == Number.prototype){
+                return console.log('Number');
+            }else if (data.__proto__ == Boolean.prototype){
+                return console.log('Boolean');
+            }
+        }
+        simulateIns(o)
+        simulateIns(arr)
+        simulateIns(fn)
+        simulateIns(str)
+        simulateIns(num)
+        simulateIns(flag)
+        simulateIns(n)
+        simulateIns(undefined)
+    </script>
+</body>
+</html>
