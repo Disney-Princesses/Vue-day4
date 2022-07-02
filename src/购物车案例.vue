@@ -14,8 +14,9 @@
         <td><input type="checkbox" v-model="item.flag" /></td>
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
-        <td><button @click="reFn(item.id)">-</button> <input type=" text" :value="item.picNum" /> <button
-            @click="addFn(item.id)">+</button>
+        <td><button @click="reFn(item.id)">-</button> <input type="text" :value="item.picNum"
+            @change="iptFn(item, $event)" />
+          <button @click="addFn(item.id)">+</button>
         </td>
         <td>{{ item.price * item.picNum }}</td>
         <td><button @click="del(item.id)">删除</button></td>
@@ -47,7 +48,8 @@ export default {
         { id: 3, name: "奥迪", price: 236, picNum: 1, flag: false },
       ],
       num: 1,
-      checked: []
+      checked: [],
+      // test: ''
     };
   },
   methods: {
@@ -92,6 +94,16 @@ export default {
     // 清空购物车
     delAll() {
       this.list = []
+    },
+    // change事件
+    iptFn(ele, e) {
+      let numStr = Number(e.target.value)
+      if (numStr <= 1 || isNaN(numStr) === true) {
+        alert("请输入数字")
+        e.target.value = 1
+      }
+      const index = this.list.findIndex((item) => item.id == ele.id)
+      this.$set(this.list[index], 'picNum', +e.target.value)
     }
   },
   computed: {
@@ -125,7 +137,8 @@ export default {
       })
       return num
     }
-  }
+  },
+
 };
 </script>
 
