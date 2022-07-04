@@ -16,7 +16,7 @@
         <td>{{ item.price }}</td>
         <td>
           <span @click="subFn(item)">-</span
-          ><input type="text" v-model.number="item.count" /><span
+          ><input type="text" v-model.number="item.count" @change="changeFn(item.id)"/><span
             @click="addFn(item)"
             >+</span
           >
@@ -53,6 +53,14 @@ export default {
     };
   },
   methods: {
+    // 优化
+    changeFn(val) {
+let index=this.list.findIndex(ele=>ele.id==val);
+if(this.list[index].count<1||isNaN(this.list[index].count)) {
+  this.list[index].count=1;
+  return alert('请输入正确的值')
+}
+    },
     // 删除功能
     delFn(val) {
       const index = this.list.findIndex((ele) => ele.id == val.id);
